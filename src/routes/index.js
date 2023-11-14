@@ -5,10 +5,6 @@ const sessionsRouter = require('./api/sessions.router.js')
 
 const router = Router()
 
-// router.use('/', (req,res) =>{
-//     res.send('Bienvenidos a la comisión 58070')
-// })
-
 
 router.use('/', viewsRouter)
 router.use('/api/users', usersRouter)

@@ -45,35 +45,6 @@ router.post('/login', async (req,res) => {
     // res.send('logueado')
 })
 
-// http://localhost:8080/api/sessions /register
-router.post('/register', async (req,res) => {
-    try {
-        const { first_name, last_name, email, password } = req.body
-        // validar campos
-        if (!first_name) {
-            return res.send({status: 'error', error: 'completar todos los campos'})
-        }
-        const exists = await userModel.findOne({email})
-
-        if (exists) return res.status(401).send({status: 'error', error: 'El usuario con el mail ingresado ya existe'})
-
-        const newUser = {
-            first_name,
-            last_name,
-            email, 
-            password: createHash(password)
-        }
-
-        let result = await userModel.create(newUser)
-        // validar result
-
-        res.send({status: 'success', message: 'El ususario fue creado correctamente'})
-    } catch (error) {
-        console.log(error)
-    }
-    
-})
-
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
     const jwtPayload = req.user;
     res.json(jwtPayload);

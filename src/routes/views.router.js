@@ -13,11 +13,6 @@ router.get('/login', (req,res)=>{
     })
 })
 
-router.get('/register', (req,res)=>{
-    res.render('register', {
-        showNav: true
-    })
-})
 // jwt - passport
 router.get('/users', [
         passportCall('jwt'),
